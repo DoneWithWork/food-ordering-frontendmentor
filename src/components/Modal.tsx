@@ -1,22 +1,16 @@
 import useCartStore from "../state/store";
 import { parsePrice } from "../utils/lib.";
 import GreenTick from "/images/icon-order-confirmed.svg";
-import Close from "/images/icon-remove-item.svg";
 import data from "../utils/data";
-import CarbonNeutral from "/images/icon-carbon-neutral.svg";
+
 import { useState } from "react";
 const Modal = ({ open }: { open: boolean }) => {
   function refreshPage() {
     window.location.reload();
   }
-  const removeItem = useCartStore((state) => state.removeItem);
   const items = useCartStore((state) => state.items);
-  const getItemQuantity = (itemName: string) => {
-    const item = items.find((i) => i.name === itemName);
-    return item ? item.quantity : 0;
-  };
 
-  const [total, setTotal] = useState(0);
+  const [total] = useState(0);
   return (
     <div className={`modal ${open ? "open" : ""}`}>
       <div className="modal__final">
